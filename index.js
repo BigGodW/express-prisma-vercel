@@ -25,9 +25,9 @@ app.post("/user/add",async(req,res)=>{
     res.send(result)
 })
 
-app.listen('3003',()=>{
-    console.log('running')
-})
+// app.listen('3003',()=>{
+//     console.log('running')
+// })
 
 module.exports = app; // 直接导出 app（Vercel 自动处理）
 module.exports.handler = serverless(app); // 备用方案

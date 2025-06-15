@@ -1,8 +1,8 @@
 const express = require('express')
-// const { PrismaClient } = require('@prisma/client')
+const { PrismaClient } = require('@prisma/client')
 const serverless = require('serverless-http');
 
-// const prisma = new PrismaClient()
+ const prisma = new PrismaClient()
 const app = express()
 app.get('/',async(req,res)=>{
     res.send('hello express')
@@ -10,21 +10,19 @@ app.get('/',async(req,res)=>{
 
 
 app.get('/user',async(req,res)=>{
-    // const user = await prisma.user.findMany()
-    // console.log(user)
-    // res.send(user)
-    res.send('user  list')
+    const user = await prisma.user.findMany()
+    console.log(user)
+    res.send(user)
 })
 app.post("/user/add",async(req,res)=>{
-    // const {name,email} = req.body
-    // const result = await prisma.user.create({
-    //     data:{
-    //         name:name,
-    //         email:email
-    //     }
-    // })
-    // res.send(result)
-    res.send('添加用户')
+    const {name,email} = req.body
+    const result = await prisma.user.create({
+        data:{
+            name:name,
+            email:email
+        }
+    })
+    res.send(result)
 })
 
 app.listen('3003',()=>{

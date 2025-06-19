@@ -5,7 +5,9 @@ const serverless = require('serverless-http');
  const prisma = new PrismaClient()
 const app = express()
 app.get('/',async(req,res)=>{
-    res.send('hello express')
+    const time = new Date().toLocaleString()
+    console.log(`请求时间: ${time}`)
+    res.send('hello express'+` ${time}`)
 })
 
 
